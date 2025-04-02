@@ -5,6 +5,8 @@ import re
 #TODO:
 #Safely access the name infos in the get_name_info method
 #Add Request Safeties
+#Add Pronuncation Getter - Requires to use HTMLSession or Selenium because its in scripts.js calls to class tts-button
+#Validate Pronunciation
 yo_alphabet = ['a','b','d','e','ẹ','f','g','gb','h','i','j','k','l','m','n','o','ọ','p','r','s','ṣ','t','u','w','y']
 
 #Returns the all names with the first character passed
@@ -44,10 +46,7 @@ def get_name_info(name):
 
     #get Geolocation by finding Geolocation header, then paragraph, then using a regex search to capture the text from "Common in: X"
     info_dict["Geolocation"] = re.search(r'Common in:\s*(\w+)',soup.find("h4",string=re.compile(r'Geolocation')).find_next('p').text).group(1)
-
-
-
-
+    info_dict["Pronunciation_URL"] = f"https://tts.yorubaname.com/api/v1/names/{info_dict["Name"]}"
     return info_dict
 
 
