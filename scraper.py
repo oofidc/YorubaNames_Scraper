@@ -58,7 +58,9 @@ def get_name_info(name):
     #get Geolocation by finding Geolocation header, then paragraph, then using a regex search to capture the text from "Common in: X"
     if soup.find("h4",string=re.compile(r'Geolocation')):
         info_dict["Geolocation"] = re.search(r'Common in:\s*(\w+)',soup.find("h4",string=re.compile(r'Geolocation')).find_next('p').text).group(1)
-    info_dict["Pronunciation_URL"] = f"https://tts.yorubaname.com/api/v1/names/{info_dict["Name"]}"
+    pronun_url = f"https://tts.yorubaname.com/api/v1/names/{info_dict["Name"]}"
+    if requests.get(pronun_url).status_code == 200:
+        info_dict["Pronunciation_URL"] = pronun_url
     return info_dict
 
 
