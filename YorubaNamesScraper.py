@@ -23,10 +23,7 @@ class YorubaNamesScraper:
         names = []
         for char in YorubaNamesScraper.yo_alphabet:
             names.append(YorubaNamesScraper.names_by_first_char(char))
-        return names
-
-
-        
+        return names        
 
     def get_name_info(name):
         url = "https://www.yorubaname.com/entries/" + name
