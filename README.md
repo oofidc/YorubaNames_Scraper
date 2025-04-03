@@ -3,6 +3,7 @@
 
 This project provides a web scraper for information from the yorubaname.com website and an accompanying Flask API to serve the scraped data.
 
+*Wrote this before I learned the website is actually open-source
 ## Features
 
 - Scrapes Yorùbá names organized alphabetically
