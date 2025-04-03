@@ -61,9 +61,19 @@ def get_name_info(name):
     pronun_url = f"https://tts.yorubaname.com/api/v1/names/{info_dict["Name"]}"
     if requests.get(pronun_url).status_code == 200:
         info_dict["Pronunciation_URL"] = pronun_url
+    if soup.find("h4", string=re.compile(r'Variants')):
+        iterator_element = soup.find("h4", string=re.compile(r'Variants')).find_next("p", class_="name")
+        variants = []
+        while iterator_element:
+            variants.append(iterator_element.text.strip())
+            iterator_element = iterator_element.find_next("p", class_="name")
+        info_dict["Variants"] = variants
+
     return info_dict
 
 
 
 #names_by_first_char('a')
 print(get_name_info(r'Ebigbola'))
+print(r"\n\n\n\n")
+print(get_name_info(r'Oyin'))
