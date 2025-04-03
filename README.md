@@ -18,7 +18,7 @@ This project provides a web scraper for information from the yorubaname.com webs
 ## Installation
 
 To run this project, you'll need to install the following dependencies:
-pip install beautifulsoup4 requests flask
+`pip install beautifulsoup4 requests flask`
 
 
 ## Usage
@@ -48,7 +48,7 @@ print(json.dumps(name_info, indent=2))
 
 To use the Flask API, run the server:
 
-bash python YorubaNamesAPI.py
+`bash python YorubaNamesAPI.py`
 
 
 Then make HTTP requests to the following endpoints:
