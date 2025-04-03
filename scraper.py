@@ -17,7 +17,7 @@ class YorubaNamesScraper:
             return {"Error:","Something Went Wrong During the Request"}
         page = request.text
         #re.findall("<li>.*</li></a>",page)
-        return [name.text for name in bs4(page,"html.parser").find('div',class_='alphabet-listing').find_all('li')]
+        return [name.text.replace(" ","") for name in bs4(page,"html.parser").find('div',class_='alphabet-listing').find_all('li')]
     #Returns all names
     def get_all_names():
         names = []
@@ -81,8 +81,8 @@ class YorubaNamesScraper:
 
 
 #names_by_first_char('a')
-print(YorubaNamesScraper.get_name_info(r'Ebigbola'))
-print(r"\n\n\n\n")
-print(YorubaNamesScraper.get_name_info(r'Oyin'))
-print(r"\n\n\n\n")
-print(YorubaNamesScraper.names_by_first_char(r'O'))
+#print(YorubaNamesScraper.get_name_info(r'Ebigbola'))
+#print(r"\n\n\n\n")
+#print(YorubaNamesScraper.get_name_info(r'Oyin'))
+#print(r"\n\n\n\n")
+#print(YorubaNamesScraper.names_by_first_char(r'O'))
