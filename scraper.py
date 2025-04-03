@@ -4,15 +4,17 @@ import re
 
 #TODO:
 #Safely access the name infos in the get_name_info method
-#Add Request Safeties
-#Add Pronuncation Getter - Requires to use HTMLSession or Selenium because its in scripts.js calls to class tts-button
-#Validate Pronunciation
+
+
+
 yo_alphabet = ['a','b','d','e','ẹ','f','g','gb','h','i','j','k','l','m','n','o','ọ','p','r','s','ṣ','t','u','w','y']
 
 #Returns the all names with the first character passed
 def names_by_first_char(first_char):
     url = "https://www.yorubaname.com/alphabet/" + first_char
     page = requests.get(url=url).text
+    if page.status_codes != 200:
+        return {"Error:","Something Went Wrong During the Request"}
     #re.findall("<li>.*</li></a>",page)
     return [name.text for name in bs4(page,"html.parser").find('div',class_='alphabet-listing').find_all('li')]
 #Returns all names
@@ -28,6 +30,8 @@ def get_all_names():
 def get_name_info(name):
     url = "https://www.yorubaname.com/entries/" + name
     page = requests.get(url=url).text
+    if page.status_codes != 200:
+        return {"Error:","Something Went Wrong During the Request"}
     soup = bs4(page,"html.parser")
     info_dict = {}
 
