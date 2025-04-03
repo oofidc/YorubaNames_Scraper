@@ -1,4 +1,4 @@
-from scraper import YorubaNamesScraper as yns
+from YorubaNamesScraper import YorubaNamesScraper as yns
 from flask import Flask, jsonify, Response
 import json
 
